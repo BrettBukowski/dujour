@@ -1,0 +1,26 @@
+{
+  "name": "dujour",
+  "version": "0.0.0",
+  "homepage": "https://github.com/BrettBukowski/dujour",
+  "authors": [
+    "Brett Bukowski <brett.bukowski@gmail.com>"
+  ],
+  "description": "Menu X-Tag web component",
+  "main": "index.js",
+  "keywords": [
+    "x-tag",
+    "menu",
+    "web-component"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "x-tag-core": "~0.9.6"
+  }
+}
