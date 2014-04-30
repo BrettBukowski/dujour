@@ -20,7 +20,9 @@
     "test",
     "tests"
   ],
-  "devDependencies": {
-    "x-tag-core": "~0.9.6"
+  "dependencies": {
+    "x-tag-core": "~0.9.6",
+    "x-tag-imports": "x-tag/x-tag-imports",
+    "htmlimports-polyfill": "~0.0.5"
   }
 }

@@ -1,0 +1,30 @@
+x-menu {
+  display: none;
+  position: fixed;
+  background: #CCC;
+  padding: 1em;
+}
+x-menu[open] {
+  display: block;
+}
+
+x-menu[position="left"] {
+  top: 0;
+  left: 0;
+  bottom: 0;
+}
+x-menu[position="right"] {
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
+x-menu[position="top"] {
+  top: 0;
+  right: 0;
+  left: 0;
+}
+x-menu[position="bottom"] {
+  bottom: 0;
+  right: 0;
+  left: 0;
+}

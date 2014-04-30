@@ -4,9 +4,76 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
     <title></title>
-    <script type="text/javascript" charset="bower_components/x-tag-core/dist/x-tag-core.min.js"></script>
+    <script src="bower_components/htmlimports-polyfill/src/html-imports.js"></script>
+    <link rel="import" href="element/menu-element.html">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="example.css" type="text/css" media="screen" title="no title" charset="utf-8">
   </head>
   <body>
+    <h1>Dujour Menu Example</h1>
 
+    <section class="triggers">
+      <div>
+        <button data-toggle="menu1">Toggle Menu</button>
+      </div>
+      <div>
+        <fieldset>
+          <legend>Effect</legend>
+          <label>
+          Default
+          <input checked type="radio" name="effect" value="slide">
+          </label>
+          <label>
+          Push
+          <input type="radio" name="effect" value="push">
+          </label>
+        </fieldset>
+      </div>
+      <div>
+        <fieldset>
+          <legend>Direction</legend>
+          <label>
+          Left
+          <input checked type="radio" name="direction" value="left">
+          </label>
+          <label>
+          Right
+          <input type="radio" name="direction" value="Right">
+          </label>
+          <label>
+          Top
+          <input type="radio" name="direction" value="top">
+          </label>
+          <label>
+          Bottom
+          <input type="radio" name="direction" value="bottom">
+          </label>
+        </fieldset>
+      </div>
+    </section>
+
+    <x-menu open position="bottom" role="menu" id="menu1">
+      <div>
+        Menu
+
+        <nav>
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Products</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </x-menu>
+
+    <script>
+      (function () {
+        function clickHandler (e) {
+          document.getElementById( e.target.getAttribute( 'data-toggle' ) ).toggle();
+        }
+        Array.prototype.forEach.call(document.querySelectorAll( '[data-toggle]' ), function ( button ) { button.addEventListener( 'click', clickHandler ); });
+      })();
+    </script>
   </body>
 </html>

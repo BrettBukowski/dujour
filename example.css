@@ -1,0 +1,66 @@
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+html {
+  color: #444;
+  font-family:'Open Sans', sans-serif;
+  font-size: 18px;
+}
+
+body {
+  padding: 0 20% 1em;
+  text-align: center;
+}
+
+h1 {
+  font-weight: normal;
+}
+
+h2 {
+  margin-top: 2em;
+}
+
+.clearfix::before {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+button,
+input[type="submit"],
+input[type="button"] {
+  border-radius: 2px;
+  border: 0;
+  background: #777;
+  color: #FFF;
+  cursor: pointer;
+  font-size: larger;
+  padding: 8px 14px;
+  -webkit-transition: all .3s;
+  -moz-transition: all .3s;
+  transition: all .3s;
+}
+button:hover,
+button:focus,
+input[type="submit"]:hover,
+input[type="submit"]:focus,
+input[type="button"]:hover,
+input[type="button"]:focus {
+  background: #666;
+}
+
+
+/* Menu */
+x-menu {
+  text-align: left;
+  font-size: larger;
+}
+x-menu nav ul {
+  padding: 0;
+  margin: 0;
+}
+x-menu nav li {
+  list-style-type: none;
+}
