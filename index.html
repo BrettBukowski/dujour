@@ -38,7 +38,7 @@
           </label>
           <label>
           Right
-          <input type="radio" name="direction" value="Right">
+          <input type="radio" name="direction" value="right">
           </label>
           <label>
           Top
@@ -52,9 +52,11 @@
       </div>
     </section>
 
-    <x-menu open position="bottom" role="menu" id="menu1">
+    <x-menu role="menu" id="menu1" aria-describedby="menu-title">
       <div>
-        Menu
+        <div class="title" id="menu-title">
+          Menu
+        </div>
 
         <nav>
           <ul>
@@ -69,10 +71,18 @@
 
     <script>
       (function () {
-        function clickHandler (e) {
-          document.getElementById( e.target.getAttribute( 'data-toggle' ) ).toggle();
+        var menu = document.querySelector( 'x-menu' );
+
+        function setPosition (e) {
+          menu.position = e.currentTarget.value;
         }
+
+        function clickHandler (e) {
+          menu.toggle();
+        }
+
         Array.prototype.forEach.call(document.querySelectorAll( '[data-toggle]' ), function ( button ) { button.addEventListener( 'click', clickHandler ); });
+        Array.prototype.forEach.call(document.querySelectorAll( '[name="direction"]' ), function ( button ) { button.addEventListener( 'change', setPosition ); });
       })();
     </script>
   </body>

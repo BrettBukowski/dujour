@@ -2,12 +2,7 @@
   xtag.register('x-menu', {
     lifecycle: {
       created: function () {
-      },
-      inserted: function () {
-
-      },
-      removed: function () {
-
+        (this.position || (this.position = "left"));
       }
     },
 
@@ -16,20 +11,26 @@
     },
 
     accessors: {
+      open: {
+        attribute: { boolean: true }
+      },
 
+      position: {
+        attribute: {}
+      }
     },
 
     methods: {
       show: function () {
-        this.setAttribute( 'open' );
+        this.open = true;
       },
 
       hide: function () {
-        this.removeAttribute( 'open' );
+        this.open = false;
       },
 
       toggle: function () {
-        if (this.hasAttribute( 'open' )) {
+        if (this.open) {
           this.hide();
         }
         else {
