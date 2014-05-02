@@ -10,12 +10,13 @@ html {
 }
 
 body {
-  padding: 0 20% 1em;
+  padding: 2em 20% 1em;
   text-align: center;
 }
 
 h1 {
   font-weight: normal;
+  margin-bottom: 3em;
 }
 
 h2 {
@@ -51,6 +52,10 @@ input[type="button"]:focus {
   background: #666;
 }
 
+.triggers > div {
+  margin-bottom: 2em;
+}
+
 
 /* Menu */
 x-menu {
@@ -63,4 +68,52 @@ x-menu nav ul {
 }
 x-menu nav li {
   list-style-type: none;
+}
+x-menu .header {
+  background: #777;
+  color: #FFF;
+  overflow: hidden;
+  padding: 1em .4em;
+}
+x-menu .title {
+  float: left;
+}
+x-menu .close {
+  color: #FFF;
+  float: right;
+  text-decoration: none;
+}
+x-menu nav a {
+  border: 1px solid #999;
+  border-width: 0 0 1px;
+  color: #FFF;
+  display: block;
+  min-width: 200px;
+  padding: 1em .4em;
+  text-decoration: none;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+x-menu nav a:hover,
+x-menu nav a:focus {
+  background: #BBB;
+}
+
+x-menu[position="top"] .header,
+x-menu[position="bottom"] .header,
+x-menu[position="top"] nav li,
+x-menu[position="bottom"] nav li {
+  width: 20%;
+}
+x-menu[position="top"] nav a,
+x-menu[position="bottom"] nav a {
+  border-width: 0 1px 0 0;
+  min-width: 0;
+}
+x-menu[position="top"] nav li,
+x-menu[position="bottom"] nav li,
+x-menu[position="top"] .header,
+x-menu[position="bottom"] .header {
+  float: left;
 }

@@ -17,6 +17,10 @@
 
       position: {
         attribute: {}
+      },
+
+      effect: {
+        attribute: {}
       }
     },
 

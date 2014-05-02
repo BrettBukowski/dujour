@@ -1,30 +1,51 @@
 x-menu {
-  display: none;
+  visibility: hidden;
   position: fixed;
   background: #CCC;
-  padding: 1em;
 }
+
+x-menu[effect="slide"] {
+  -webkit-transition: all .5s ease;
+  -moz-transition: all .5s ease;
+  transition: all .5s ease;
+}
+
 x-menu[open] {
-  display: block;
+  visibility: visible;
 }
 
 x-menu[position="left"] {
+  left: -100%;
   top: 0;
-  left: 0;
   bottom: 0;
 }
+x-menu[position="left"][open] {
+  left: 0;
+}
+
 x-menu[position="right"] {
-  top: 0;
-  right: 0;
   bottom: 0;
+  right: -100%;
+  top: 0;
 }
+x-menu[position="right"][open] {
+  right: 0;
+}
+
 x-menu[position="top"] {
-  top: 0;
+  top: -100%;
   right: 0;
   left: 0;
 }
+x-menu[position="top"][open] {
+  top: 0;
+}
+
 x-menu[position="bottom"] {
-  bottom: 0;
+  bottom: -100%;
   right: 0;
   left: 0;
+}
+x-menu[position="bottom"][open] {
+  bottom: 0;
 }

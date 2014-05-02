@@ -20,8 +20,12 @@
         <fieldset>
           <legend>Effect</legend>
           <label>
-          Default
-          <input checked type="radio" name="effect" value="slide">
+          None (default)
+          <input checked type="radio" name="effect" value="">
+          </label>
+          <label>
+          Slide
+          <input type="radio" name="effect" value="slide">
           </label>
           <label>
           Push
@@ -54,8 +58,11 @@
 
     <x-menu role="menu" id="menu1" aria-describedby="menu-title">
       <div>
-        <div class="title" id="menu-title">
-          Menu
+        <div class="header">
+          <div class="title" id="menu-title">
+            Menu
+          </div>
+          <a href="#" class="close" data-toggle="menu1">×</a>
         </div>
 
         <nav>
@@ -73,16 +80,18 @@
       (function () {
         var menu = document.querySelector( 'x-menu' );
 
-        function setPosition (e) {
-          menu.position = e.currentTarget.value;
+        function setProperty (propertyName, e) {
+          menu[propertyName] = e.currentTarget.value;
         }
 
         function clickHandler (e) {
+          e.preventDefault();
           menu.toggle();
         }
 
         Array.prototype.forEach.call(document.querySelectorAll( '[data-toggle]' ), function ( button ) { button.addEventListener( 'click', clickHandler ); });
-        Array.prototype.forEach.call(document.querySelectorAll( '[name="direction"]' ), function ( button ) { button.addEventListener( 'change', setPosition ); });
+        Array.prototype.forEach.call(document.querySelectorAll( '[name="direction"]' ), function ( button ) { button.addEventListener( 'change', setProperty.bind(this, 'position') ); });
+        Array.prototype.forEach.call(document.querySelectorAll( '[name="effect"]' ), function ( button ) { button.addEventListener( 'change', setProperty.bind(this, 'effect') ); });
       })();
     </script>
   </body>
