@@ -1,4 +1,67 @@
 (function () {
+
+  function getStyle ( el, property ) {
+    return window.getComputedStyle(el).getPropertyValue( property );
+  }
+
+  function applyTransform ( el, value ) {
+    ['-webkit-', '-moz-', ''].some( function (prefix) {
+      if (prefix + 'transform' in el.style) {
+        el.style[ prefix + 'transform'] = value;
+        return true;
+      }
+    });
+  }
+
+  function translate ( el, coord, dimension ) {
+    applyTransform(el, 'translate' + dimension.toUpperCase() + '(' + coord + ')');
+  }
+
+  function untranslate ( el ) {
+    applyTransform(el, '');
+  }
+
+  var operations = {
+    left: { prop: 'width', direction: -1, dimension: 'x' },
+    right: { prop: 'width', direction: 1, dimension: 'x' },
+    top: { prop: 'height', direction: -1, dimension: 'y' },
+    bottom: { prop: 'height', direction: 1, dimension: 'y' }
+  }
+
+  function moveEl ( el ) {
+    if ( this.effect != 'push' && this.effect != 'slide' ) {
+      untranslate( this );
+      return;
+    }
+
+    var operation = operations[ this.position ];
+
+    if ( this.open ) {
+      untranslate( this );
+    }
+    else {
+      translate( this, operation.direction * parseInt(getStyle( this, operation.prop ), 10) + 'px', operation.dimension );
+    }
+  }
+
+  var pushDirection = {
+    'left': 'left',
+    'right': 'left',
+    'top': 'top',
+    'bottom': 'top'
+  };
+
+  function moveDoc () {
+    if ( this.effect != 'push' || !this.open ) {
+      document.body.style[ pushDirection[ this.position ] ] = 0;
+      return;
+    }
+
+    var operation = operations[ this.position ];
+
+    document.body.style[ pushDirection[ this.position ] ] = -1 * operation.direction * parseInt(getStyle( this, operation.prop ), 10) + 'px';
+  }
+
   xtag.register('x-menu', {
     lifecycle: {
       created: function () {
@@ -12,15 +75,39 @@
 
     accessors: {
       open: {
-        attribute: { boolean: true }
+        attribute: { boolean: true },
+        set: function () {
+          this.setAttribute( 'aria-hidden', !this.open );
+
+          if ( this.open ) {
+            this.removeAttribute('style');
+          }
+          else {
+            moveEl.call(this);
+          }
+
+          moveDoc.call(this);
+        }
       },
 
       position: {
-        attribute: {}
+        attribute: {},
+        set: function () {
+          moveEl.call(this);
+        }
       },
 
       effect: {
-        attribute: {}
+        attribute: {},
+        set: function () {
+          moveEl.call(this);
+          if ( this.effect == 'push' ) {
+            document.body.classList.add( 'menu-push' );
+          }
+          else {
+            document.body.classList.remove( 'menu-push' );
+          }
+        }
       }
     },
 
@@ -34,7 +121,7 @@
       },
 
       toggle: function () {
-        if (this.open) {
+        if ( this.open ) {
           this.hide();
         }
         else {

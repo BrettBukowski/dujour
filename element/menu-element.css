@@ -1,10 +1,18 @@
 x-menu {
-  visibility: hidden;
-  position: fixed;
   background: #CCC;
+  position: fixed;
+  visibility: hidden;
+  z-index: 1000;
 }
 
-x-menu[effect="slide"] {
+.menu-push {
+  position: relative;
+  overflow: hidden;
+}
+
+.menu-push,
+x-menu[effect="slide"],
+x-menu[effect="push"] {
   -webkit-transition: all .5s ease;
   -moz-transition: all .5s ease;
   transition: all .5s ease;
@@ -15,37 +23,25 @@ x-menu[open] {
 }
 
 x-menu[position="left"] {
-  left: -100%;
+  left: 0;
   top: 0;
   bottom: 0;
-}
-x-menu[position="left"][open] {
-  left: 0;
 }
 
 x-menu[position="right"] {
   bottom: 0;
-  right: -100%;
-  top: 0;
-}
-x-menu[position="right"][open] {
   right: 0;
+  top: 0;
 }
 
 x-menu[position="top"] {
-  top: -100%;
+  top: 0;
   right: 0;
   left: 0;
-}
-x-menu[position="top"][open] {
-  top: 0;
 }
 
 x-menu[position="bottom"] {
-  bottom: -100%;
+  bottom: 0;
   right: 0;
   left: 0;
-}
-x-menu[position="bottom"][open] {
-  bottom: 0;
 }
