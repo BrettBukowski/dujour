@@ -26,7 +26,7 @@
     right: { prop: 'width', direction: 1, dimension: 'x' },
     top: { prop: 'height', direction: -1, dimension: 'y' },
     bottom: { prop: 'height', direction: 1, dimension: 'y' }
-  }
+  };
 
   function moveEl ( el ) {
     if ( this.effect != 'push' && this.effect != 'slide' ) {
