@@ -1,12 +1,12 @@
 (function () {
 
   function getStyle ( el, property ) {
-    return window.getComputedStyle(el).getPropertyValue( property );
+    return window.getComputedStyle( el ).getPropertyValue( property );
   }
 
   function applyTransform ( el, value ) {
     ['-webkit-', '-moz-', ''].some( function (prefix) {
-      if (prefix + 'transform' in el.style) {
+      if ( prefix + 'transform' in el.style ) {
         el.style[ prefix + 'transform'] = value;
         return true;
       }
@@ -14,11 +14,11 @@
   }
 
   function translate ( el, coord, dimension ) {
-    applyTransform(el, 'translate' + dimension.toUpperCase() + '(' + coord + ')');
+    applyTransform( el, 'translate' + dimension.toUpperCase() + '(' + coord + ')' );
   }
 
   function untranslate ( el ) {
-    applyTransform(el, '');
+    applyTransform( el, '' );
   }
 
   var operations = {
@@ -54,18 +54,24 @@
   function moveDoc () {
     if ( this.effect != 'push' || !this.open ) {
       document.body.style[ pushDirection[ this.position ] ] = 0;
-      return;
+    }
+    else {
+      var operation = operations[ this.position ];
+
+      document.body.style[ pushDirection[ this.position ] ] = -1 * operation.direction * parseInt(getStyle( this, operation.prop ), 10) + 'px';
     }
 
-    var operation = operations[ this.position ];
-
-    document.body.style[ pushDirection[ this.position ] ] = -1 * operation.direction * parseInt(getStyle( this, operation.prop ), 10) + 'px';
+    for ( var direction in pushDirections ) {
+      if ( pushDirections.hasOwnProperty( direction ) && direction != this.position ) {
+        document.body.style[ direction ] = 0;
+      }
+    }
   }
 
   xtag.register('x-menu', {
     lifecycle: {
       created: function () {
-        (this.position || (this.position = "left"));
+        ( this.position || ( this.position = "left" ) );
       }
     },
 
@@ -80,27 +86,28 @@
           this.setAttribute( 'aria-hidden', !this.open );
 
           if ( this.open ) {
-            this.removeAttribute('style');
+            this.removeAttribute( 'style' );
           }
           else {
-            moveEl.call(this);
+            moveEl.call( this );
           }
 
-          moveDoc.call(this);
+          moveDoc.call( this );
         }
       },
 
       position: {
         attribute: {},
         set: function () {
-          moveEl.call(this);
+          moveEl.call( this );
+          moveDoc.call( this );
         }
       },
 
       effect: {
         attribute: {},
         set: function () {
-          moveEl.call(this);
+          moveEl.call( this );
           if ( this.effect == 'push' ) {
             document.body.classList.add( 'menu-push' );
           }

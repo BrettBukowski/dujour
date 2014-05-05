@@ -7,7 +7,7 @@ x-menu {
 
 .menu-push {
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 .menu-push,

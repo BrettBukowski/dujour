@@ -3,14 +3,19 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
-    <title></title>
+    <title>Dujour Example</title>
     <script src="bower_components/htmlimports-polyfill/src/html-imports.js"></script>
     <link rel="import" href="element/menu-element.html">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="example.css" type="text/css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.0/styles/default.min.css" type="text/css">
   </head>
   <body>
-    <h1>Dujour Menu Example</h1>
+    <h1>Dujour Menu Widget</h1>
+
+    <p>
+      An <a href="http://x-tags.org">X-Tag</a> web component.
+    </p>
 
     <section class="triggers">
       <div>
@@ -37,19 +42,19 @@
         <fieldset>
           <legend>Direction</legend>
           <label>
-          Left
+          →
           <input checked type="radio" name="direction" value="left">
           </label>
           <label>
-          Right
+          ←
           <input type="radio" name="direction" value="right">
           </label>
           <label>
-          Top
+          ↓
           <input type="radio" name="direction" value="top">
           </label>
           <label>
-          Bottom
+          ↑
           <input type="radio" name="direction" value="bottom">
           </label>
         </fieldset>
@@ -76,6 +81,58 @@
       </div>
     </x-menu>
 
+    <div class="examples">
+      <pre>
+        <code class="language-html">
+&lt;x-menu role="menu"&gt;
+  Menu
+&lt;/x-menu&gt;</code>
+      </pre>
+
+      <h2>Attributes</h2>
+      <h3>open</h3>
+      <pre>
+        <code class="language-html">
+&lt;x-menu open&gt;
+  Menu is open
+&lt;/x-menu&gt;</code>
+      </pre>
+
+      <h3>position</h3>
+      <pre>
+        <code class="language-html">
+&lt;x-menu position="top|bottom|left|right"&gt;
+  Menu
+&lt;/x-menu&gt;</code>
+      </pre>
+
+      <h3>effect</h3>
+      <pre>
+        <code class="language-html">
+&lt;x-menu position="slide|push"&gt;
+  Menu
+&lt;/x-menu&gt;</code>
+      </pre>
+      <p>
+        Leaving off this attribute means the menu immediately shows without any visual effect.
+      </p>
+
+      <h2>JavaScript API</h2>
+      <h3>Hiding and Showing</h3>
+      <pre>
+        <code class="language-javascript">
+var menu = document.querySelector( 'x-menu' );
+menu.show();
+menu.hide();
+menu.toggle();
+        </code>
+      </pre>
+    </div>
+
+    <footer>
+      <a href="https://github.com/BrettBukowski/dujour">Source on Github</a> | Project maintained by <a href="http://brettbukowski.com">Brett Bukowski</a>
+    </footer>
+
     <script>
       (function () {
         var menu = document.querySelector( 'x-menu' );
@@ -94,5 +151,7 @@
         Array.prototype.forEach.call(document.querySelectorAll( '[name="effect"]' ), function ( button ) { button.addEventListener( 'change', setProperty.bind(this, 'effect') ); });
       })();
     </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
   </body>
 </html>
