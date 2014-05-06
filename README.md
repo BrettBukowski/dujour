@@ -9,7 +9,7 @@ An [X-Tag](http://x-tags.org) web component.
 - Push and slide effects
 
 
-![](http://imgur.com/lx8BL9f)
+![](http://i.imgur.com/lx8BL9f.gif)
 
 
 <http://brettbukowski.github.io/dujour/>
