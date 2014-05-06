@@ -1,6 +1,6 @@
 # Dujour Menu widget
 
-An [X-Tag](x-tags.org) web component.
+An [X-Tag](http://x-tags.org) web component.
 
 ## Features
 
