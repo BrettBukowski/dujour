@@ -8,4 +8,8 @@ An [X-Tag](http://x-tags.org) web component.
 - Top, bottom, left, and right menu positions
 - Push and slide effects
 
+
+![](http://imgur.com/lx8BL9f)
+
+
 <http://brettbukowski.github.io/dujour/>
